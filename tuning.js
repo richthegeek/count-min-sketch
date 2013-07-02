@@ -7,13 +7,9 @@
   number of collisions
   large collision delta (ie, size of error)
 */
+var sample_size = 10000;
 
 var sketch = require('count-min-sketch');
-
-var sample = [];
-for (var i = 0; i < 10000; i++) {
-	sample.push(i);
-}
 
 for (var a = 1; a <= 5; a++) {
 	for (var b = 1; b <= 5; b++) {
@@ -21,12 +17,12 @@ for (var a = 1; a <= 5; a++) {
 		var _b = Math.pow(10, 0 - b);
 		var sk = sketch(_a, _b);
 
-		for (var i = 0; i < 10000; i++) {
+		for (var i = 0; i < sample_size; i++) {
 			sk.update(i, 10);
 		}
 
 		var collisions = 0, max = 0;
-		for (var i = 0; i < 10000; i++) {
+		for (var i = 0; i < sample_size; i++) {
 			var value = sk.query(i);
 			if (value != 10) {
 				collisions++;
