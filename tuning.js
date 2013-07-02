@@ -12,7 +12,7 @@ var sketch = require('count-min-sketch');
 
 var sample = [];
 for (var i = 0; i < 10000; i++) {
-  sample.push(i);
+	sample.push(i);
 }
 
 for (var a = 1; a <= 5; a++) {
@@ -37,9 +37,8 @@ for (var a = 1; a <= 5; a++) {
 
 		var pad = function(val) {
 			val = val.toString();
-			val = val + ('          ').substring(0, 10 - val.length);
-			return val;
+			return val + ('          ').substring(0, 10 - val.length);
 		}
-		console.log.apply(console.log, [_a, _b, size + 'kb', collisions, max].map(pad));
+		console.log([_a, _b, size + 'kb', collisions, max].map(pad).join(''));
 	}
 }
